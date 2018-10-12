@@ -1,10 +1,16 @@
 package com.task;
 
+import java.util.Scanner;
+
 public class Pattern {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String str = "JavaJ2ee";
+		
+		Scanner sc  = new Scanner(System.in);
+		System.out.print("Enter the input string: ");
+		String str = sc.nextLine();
+		sc.close();
+		
 		char arr[] = str.toCharArray();
 		int length = str.length();
 		
