@@ -4,7 +4,7 @@ public class DupArray {
 	
 	
 	public static void main(String[] args) {
-		int [] arr = {2,8,0,4,0,8};
+		int [] arr = {2,0,0,4,8,2};
 		int l = arr.length-1;
 	//manipulation as per the requirement	
 	for(int i=0;i<=l;i++){
@@ -17,17 +17,24 @@ public class DupArray {
 				break;
 			}
 		}
+		System.out.print(arr[i]+" ");
 	}
+	System.out.println();
 //	Shifting zeros to the last
-	for(int i=0;i<l;i++){
-		if(arr[i]==0){
-			arr[i]=arr[i+1];//Assigning right adjacent element to current element
-			arr[i+1]=0;  //shifting current zero to adjacent element
+	for(int i=l;i>0;i--){
+		for(int j=i-1;j>=0;j--){
+			if(arr[i]!=0){
+				int temp = arr[j];
+					arr[j]=arr[i];
+					arr[i]=temp;
+			}
 		}
+		System.out.print(arr[i]);
 	}
+	System.out.println();
 //	printing the Array
 	for(int i=0;i<=l;i++){
-		System.out.print(arr[i]+" ");
+		System.out.print(" "+arr[i]+" ");
 	}
 	}
 
