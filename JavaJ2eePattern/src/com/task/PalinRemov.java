@@ -5,11 +5,13 @@ import java.util.Scanner;
 public class PalinRemov {
 	
 	public static String strRev(String str){
-		char[] ch = str.toCharArray();
-		String rev = "";
-		for (int i=ch.length-1;i>=0;i--){
-			rev += Character.toString(ch[i]);
-		}
+//		char[] ch = str.toCharArray();
+//		String rev = "";
+//		for (int i=ch.length-1;i>=0;i--){
+//			rev += Character.toString(ch[i]);
+//		}
+		StringBuilder st = new StringBuilder(str);
+		String rev = st.reverse().toString();
 		return rev;
 	}
 
