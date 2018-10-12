@@ -11,15 +11,15 @@ public class Pattern {
 		//upper sequence
 		for(int i=0;i<=length-1;i++){
 		   for(int j=0;j<=i;j++)   {
-			System.out.print(arr[j]);
+			System.out.print(arr[j]+" ");
 		}
 		System.out.println();
 		}
 		
 		//lower sequence
-		for(int i=length-2;i>0;i--){
+		for(int i=length-2;i>=0;i--){
 			for(int j=0;j<=i;j++){
-				System.out.print(arr[j]);
+				System.out.print(arr[j]+" ");
 			}
 			System.out.println();
 		}
