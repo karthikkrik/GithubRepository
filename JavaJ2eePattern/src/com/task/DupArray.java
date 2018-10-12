@@ -17,7 +17,6 @@ public class DupArray {
 				break;
 			}
 		}
-		System.out.print(arr[i]+" ");
 	}
 	System.out.println();
 //	Shifting zeros to the last
@@ -29,7 +28,7 @@ public class DupArray {
 					arr[i]=temp;
 			}
 		}
-		System.out.print(arr[i]);
+		
 	}
 	System.out.println();
 //	printing the Array
