@@ -25,11 +25,16 @@ public class PalinRemov {
 		String [] strArr  = (str.split(" "));
 	
 	for(int i=0;i<=strArr.length-1;i++){
+	if(strArr[i].length()>1){	
 		if(!(strArr[i].equalsIgnoreCase(strRev(strArr[i])))){//passing original array string to strRev method
 				strresult = strresult +strArr[i]+" ";// and comparing with original array string.
 			}
-		}
-		System.out.println(strresult);
-	}
+	}else{
+		strresult = strresult +strArr[i]+" ";
+		 }
+   }
+	System.out.println(strresult);
+	
+}
 
 }
