@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Products page</title>
+</h:head>
+<body>
+
+<h:form id="addform">
+
+	<p:panel id="addPanel" header="Insert Product">
+		<p:messages id="messages" value="#{productBean.message}" autoupdate="true" />		 
+		Enter Product name: <p:inputText id="Productname" value="#{productBean.prodName}" required="true" requiredMessage="Product name is required">
+		<f:validateLength minimum="3" maximum = "10"/>
+		</p:inputText>		
+		<br/>
+		Enter Product Quantity: <p:inputText id="ProductQuantity" value="#{productBean.prodQuantity}" required="true" requiredMessage="Product quantity is required" >
+		<f:validateDoubleRange minimum="5" maximum = "100" />
+		</p:inputText>		
+		<br/>
+		Enter Product cost: <p:inputText id="ProductCost" value="#{productBean.prodCost}" required ="true" requiredMessage="Product cost is required"/>		
+		<br/>
+		<p:commandButton value="Add product" update="addform" action="#{productBean.saveProduct()}"/>	
+		<p:commandButton value="Reset" type="reset" update="addform" action="#{productBean.resete()}"/>	
+	</p:panel>
+</h:form>
+<!-- <p:separator></p:separator> -->
+<h:form id ="tabform">
+<p:growl id="msgs" showDetail="true"/>
+	<p:messages id="messages"  value="#{productBean.message}" autoupdate="true" />
+	<p:dataTable id="td" widgetVar="product" var="p"  value="#{productBean.productList}" style="margin-bottom:40px" rows="5"
+		  				paginator="true"
+		  				editable="true" editMode="cell"
+                        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="5,10,15">                        
+	<f:facet name="header">Product Details </f:facet>
+	<p:ajax event="cellEdit" listener="#{productBean.onCellEdit}" update=":tabform:msgs" />
+	<h:inputHidden id="prodId" value="#{p.prodsubid}"/>
+	
+	<p:column headerText="ProductName" sortBy="#{p.prodsubname}">
+	<p:cellEditor>
+	<f:facet name="output">
+	<h:outputText value="#{p.prodsubname}" />
+	</f:facet>
+	<f:facet name="input">
+	<p:inputText value ="#{p.prodsubname}" required="true" requiredMessage="Product name is required">
+	<f:validateLength minimum="3" maximum = "10"/>
+	</p:inputText>
+	</f:facet>
+	</p:cellEditor>
+	</p:column>
+	
+	<p:column headerText="Product Quantity" sortBy="#{p.prodsubquantity}">
+	<p:cellEditor>
+	<f:facet name="output">
+	<h:outputText value="#{p.prodsubquantity}"/>
+	</f:facet>
+	<f:facet name="input">
+	<p:inputText value="#{p.prodsubquantity}" required="true" requiredMessage="Product quantity is required" >
+	<f:validateDoubleRange minimum="5" maximum = "100" />
+	</p:inputText>
+	</f:facet>
+	</p:cellEditor>
+	</p:column>
+	
+	<p:column headerText="Product Cost" sortBy="#{p.prodsubcost}">
+	<p:cellEditor>
+	<f:facet name="output"><h:outputText value="#{p.prodsubcost}" /></f:facet>
+	<f:facet name="input"><p:inputText value="#{p.prodsubcost}" required ="true" requiredMessage="Product cost is required" /></f:facet>
+	</p:cellEditor>
+	</p:column>
+	
+	<p:column headerText="Delete product">
+	<p:commandButton value="Delete product" update="tabform" action="#{productBean.deleteProduct(p.prodsubid)}"/>
+	</p:column>
+	
+	<p:column headerText="Update product" >
+	<p:commandButton value="Update" update="tabform" action="#{productBean.updateProduct(p)}"/>
+	</p:column>
+
+	<p:column headerText="Save product" >
+	<p:commandButton value="Add product" update="tabform" action="#{productBean.saveProduct()}"/>
+	</p:column>
+	
+</p:dataTable>
+   
+</h:form>
+	
+</body>
+</html>
