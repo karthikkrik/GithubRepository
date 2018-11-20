@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	<!-- Fetching the products -->
+	<form-beans>
+		<form-bean name="stockForm" type="com.pharmacist.form.StockForm" />
+	</form-beans>
+	<action-mappings>
+		<action path="/Stockretrieve" type="com.pharmacist.action.StockAction"
+		  scope="request" parameter="method" name="stockForm">
+			<forward name="success" path="/ProductsDisplay.jsp" />
+			<forward name="deletesuccess" path="/RedirectProductdisplay.jsp" />
+			<forward name="updatesuccess" path="/RedirectProductdisplay.jsp"/>
+		</action>
+	</action-mappings>
+	
+	
+<!-- delete products -->
+<form-beans>
+		<form-bean name="deleteForm" type="com.pharmacist.form.StockDeleteForm" />
+	</form-beans>
+	<action-mappings>
+		<action path="/Stockdelete" type="com.pharmacist.action.StockAction"
+		  scope="request" parameter="method" name="deleteForm">
+			<forward name="success" path="/ProductsDisplay.jsp" />
+			<forward name="deletesuccess" path="/RedirectProductdisplay.jsp" />
+		</action>
+	</action-mappings>
+	
+	
+<!-- update operation -->
+<form-beans>
+		<form-bean name="updateForm" type="com.pharmacist.form.StockUpdateForm" />
+	</form-beans>
+	
+	<action-mappings>
+		<action path="/UpdatePage" type="com.pharmacist.action.StockAction"
+		 scope="request" parameter="method" name="updateForm" >
+			<forward name="updatepage" path="/UpdateProduct.jsp"/>
+			<forward name="updatesuccess" path="/RedirectProductdisplay.jsp"/>
+		</action>
+	</action-mappings>
+	
+
+	
+ <!-- Adding operation -->
+	<form-beans>
+		<form-bean name="addForm" type="com.pharmacist.form.StockAddForm">
+		</form-bean>
+	</form-beans>
+	<action-mappings>
+		<action path="/AddProductpage" type="org.apache.struts.actions.ForwardAction"
+			parameter="/AddProduct.jsp">
+		</action>
+		<action path="/AddProduct" type="com.pharmacist.action.AddProductAction"
+			name="addForm" scope="request" parameter="method" 
+			input="/AddProduct.jsp">
+			<forward name="add" path="/RedirectProductdisplay.jsp" />
+			<forward name="delete" path="/RedirectProductdisplay.jsp" />
+		</action>
+		
+	</action-mappings>
+
+		<message-resources parameter="com/pharmacist/resources/ApplicationResource" />
+     
+
+</struts-config>
+
